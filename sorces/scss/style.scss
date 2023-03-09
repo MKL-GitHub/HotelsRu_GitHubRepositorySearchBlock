@@ -1,0 +1,24 @@
+// Обнуление стилей.
+@import "../css/nullStyle";
+
+// Подключение стилей страницы.
+@import "github-repository-search.scss";
+
+body {
+    background-color: #252525;
+    // background-color: #262830;
+    color: #dddddd;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+section {
+    max-width: 1200px;
+    margin: 0px auto;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    overflow: hidden;
+}

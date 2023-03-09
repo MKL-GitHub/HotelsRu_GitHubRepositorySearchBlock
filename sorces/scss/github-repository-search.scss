@@ -1,0 +1,197 @@
+$mistakeColor: #ac2525;
+$repositoryBorder: 1px solid #3a3a3a;
+
+.github-search-block {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 100px;
+
+    &__heading {
+        text-align: center;
+        font-size: 18px;
+        line-height: 20px;
+        padding: 10px;
+    }
+
+    & .repository-search {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0px;
+
+        &__search, &__submit {
+            height: 40px;
+        }
+
+        &__search {
+            width: 500px;
+            border: 1px solid #5d5d5d;
+            border-right: none;
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+
+            &[data-is-empty = true] {
+                position: relative;
+                border-color: $mistakeColor;
+
+                &::before {
+                    content: "Введите строку для поиска";
+                    position: absolute;
+                    left: 14px;
+                    top: -17px;
+                    color: $mistakeColor;
+                    font-size: 12px;
+                }
+            }
+
+            & input {
+                background-color: transparent;
+                padding-left: 15px;
+                height: 100%;
+                width: 100%;
+                border-top-left-radius: 12px;
+                border-bottom-left-radius: 12px;
+                color: #dddddd;
+                font-size: 16px;
+            }
+        }
+        &__submit {
+            width: 50px;
+            background-color: #3a3a3a;
+            padding: 8px;
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+
+            &:hover {
+                background-color: #313131;
+            }
+            &:active {
+                background-color: #2e2e2e;
+            }
+        }
+    }
+
+    .repository-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-size: 16px;
+        padding-top: 10px;
+        counter-reset: item-counter;
+
+        &[data-is-nothing-found = true] {
+            position: relative;
+
+            &::before {
+                content: "Ничего не найдено";
+                position: absolute;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+    .repository-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #7e7e7e0e;
+        border: $repositoryBorder;
+        border-radius: 4px;
+        padding: 20px 10px;
+        counter-increment: item-counter;
+        padding-top: 40px;
+        line-height: 18px;
+
+        &::before {
+            content: counter(item-counter);
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: #232323;
+            border-right: $repositoryBorder;
+            border-bottom: $repositoryBorder;
+            border-top-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            padding: 5px;
+        }
+
+        &__field {
+            display: flex;
+            gap: 5px;
+            border-bottom: $repositoryBorder;
+            padding-bottom: 3px;
+            font-size: 14px;
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                width: 7px;
+                height: 7px;
+            }
+            &::-webkit-scrollbar-thumb {
+                border: 2px solid #00000000;
+                border-radius: 7px;
+                background-clip: padding-box;
+                background-color: #404548;
+            }
+            
+            & > *:first-child {
+                color: #acacac;
+                min-width: 190px;
+            }
+            & > a {
+                color: #5b93cf;
+            }
+        }
+    }
+}
+
+.mistake {
+    animation: mistake 350ms 2;
+
+    &::before {
+        animation: mistake 350ms 2;
+    }
+}
+
+@keyframes mistake {
+    0% { 
+        border-color: transparent;
+        color: transparent;
+    }
+    100% { 
+        border-color: $mistakeColor;
+        color: $mistakeColor;
+    }
+}
+
+@media (max-width: 1024px) {
+    .github-search-block {
+        padding-left: 75px;
+        padding-right: 75px;
+    }
+}
+
+@media (max-width: 768px) {
+    .github-search-block {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    .repository-item {
+        &__field {
+            flex-direction: column;
+
+            & > *:last-child {
+                padding-left: 10px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .github-search-block {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
