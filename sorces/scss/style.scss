@@ -6,9 +6,19 @@
 
 body {
     background-color: #252525;
-    // background-color: #262830;
     color: #dddddd;
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+   
+    &::-webkit-scrollbar {
+        width: 15px;
+        height: 15px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border: 3px solid #00000000;
+        border-radius: 7px;
+        background-clip: padding-box;
+        background-color: #404548;
+    }
 }
 
 section {
