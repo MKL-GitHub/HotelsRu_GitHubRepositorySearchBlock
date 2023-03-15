@@ -15,6 +15,7 @@ class RepositorySearch {
 
     resetSearchAttributes() {
         this._searchString.parentElement.setAttribute("data-is-empty", false);
+        this._searchString.parentElement.setAttribute("data-is-too-short", false);
     }
 
     addAnimation(elem, cssClass, time) {
@@ -23,11 +24,17 @@ class RepositorySearch {
     }
 
     isValid() {
-        if (this._searchString.value) return true;
+        if (this._searchString.value.length > 1) return true;
 
         const ANIMATION_TIME = 700
 
-        this._searchString.parentElement.setAttribute("data-is-empty", true);
+        if (this._searchString.value.length === 0) {
+            this._searchString.parentElement.setAttribute("data-is-empty", true);
+        }
+        else if (this._searchString.value.length === 1) {
+            this._searchString.parentElement.setAttribute("data-is-too-short", true);
+        }
+
         this.addAnimation(this._searchString.parentElement, "mistake", ANIMATION_TIME);
 
         return false;
@@ -60,10 +67,10 @@ class RepositorySearch {
                 
                 listItem.className = "repository-item";
                 listItem.innerHTML = `
-                        <div class="repository-item__field"><span>Название:</span><a href="${item.html_url}" target="_blank">${item.name}</a></div>
-                        <div class="repository-item__field"><span>Язык программирования:</span><span>${item.language}</span></div>
-                        <div class="repository-item__field"><span>Описание:</span><span>${item.description}</span></div>
-                        <div class="repository-item__field"><span>Git URL:</span><span>${item.git_url}</span></div>
+                    <div class="repository-item__field"><span>Название:</span><a href="${item.html_url}" target="_blank">${item.name}</a></div>
+                    <div class="repository-item__field"><span>Язык программирования:</span><span>${item.language}</span></div>
+                    <div class="repository-item__field"><span>Описание:</span><span>${item.description}</span></div>
+                    <div class="repository-item__field"><span>Git URL:</span><span>${item.git_url}</span></div>
                     `;
 
                 this._repositoryList.append(listItem);

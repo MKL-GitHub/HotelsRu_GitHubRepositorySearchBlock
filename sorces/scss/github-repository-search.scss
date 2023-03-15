@@ -29,18 +29,24 @@ $repositoryBorder: 1px solid #3a3a3a;
             border-top-left-radius: 12px;
             border-bottom-left-radius: 12px;
 
-            &[data-is-empty = true] {
+            &[data-is-empty = true], 
+            &[data-is-too-short = true] {
                 position: relative;
                 border-color: $mistakeColor;
 
                 &::before {
-                    content: "Введите строку для поиска";
                     position: absolute;
                     left: 14px;
                     top: -17px;
                     color: $mistakeColor;
                     font-size: 12px;
                 }
+            }
+            &[data-is-empty = true]::before {
+                content: "Введите строку для поиска";
+            }
+            &[data-is-too-short = true]::before {
+                content: "Строка должна быть не короче двух символов";
             }
 
             & input {
@@ -194,5 +200,30 @@ $repositoryBorder: 1px solid #3a3a3a;
     .github-search-block {
         padding-left: 20px;
         padding-right: 20px;
+    }
+}
+
+@media (max-width: 388px) {
+    .github-search-block {
+        & .repository-search {
+            padding: 30px 0px;
+
+            &__search {
+                &[data-is-too-short = true]::before {
+                    top: -27px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 265px) {
+    .github-search-block {
+        & .repository-search {
+            &__search {
+                &[data-is-empty = true]::before {
+                    top: -27px;
+                }
+            }
+        }
     }
 }
