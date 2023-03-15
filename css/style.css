@@ -67,6 +67,7 @@ h1, h2, h3, h4, h5, h6 {
 .github-search-block {
   display: flex;
   flex-direction: column;
+  gap: 20px;
   padding: 20px 100px;
 }
 .github-search-block__heading {
@@ -78,7 +79,6 @@ h1, h2, h3, h4, h5, h6 {
 .github-search-block .repository-search {
   display: flex;
   justify-content: center;
-  padding: 20px 0px;
 }
 .github-search-block .repository-search__search, .github-search-block .repository-search__submit {
   height: 40px;
@@ -194,11 +194,54 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #404548;
 }
 .github-search-block .repository-item__field > *:first-child {
-  color: #acacac;
+  color: #acaea0;
   min-width: 190px;
 }
 .github-search-block .repository-item__field > a {
   color: #5b93cf;
+}
+.github-search-block .repository-item__field:nth-child(3) {
+  max-height: 300px;
+}
+.github-search-block__more-repositories {
+  gap: 30px;
+  display: none;
+  align-self: center;
+}
+.github-search-block__more-repositories[data-status="403"] {
+  position: relative;
+}
+.github-search-block__more-repositories[data-status="403"]::after {
+  content: "Ошибка 403";
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+}
+.github-search-block__more-repositories > div {
+  display: flex;
+  align-self: flex-end;
+  gap: 10px;
+  border-bottom: 1px solid #5d5d5d;
+  padding: 5px;
+}
+.github-search-block__more-repositories > button {
+  padding: 7px 15px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #5d5d5d;
+  border-radius: 30px;
+  color: #cccccc;
+}
+.github-search-block__more-repositories > button:hover {
+  background-color: rgba(255, 255, 255, 0.0431372549);
+}
+.github-search-block__more-repositories > button:active {
+  background-color: rgba(255, 255, 255, 0.0745098039);
 }
 
 .mistake {
